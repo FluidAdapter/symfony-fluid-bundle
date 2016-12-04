@@ -1,0 +1,44 @@
+{
+  "name": "mfc/symfony-fluid-bundle",
+  "type": "symfony-bundle",
+  "description": "MFC Symfony FluidBundle",
+  "keywords": [],
+  "homepage": "http://www.marketing-factory.de/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Christian Spoo",
+      "email": "cs@marketing-factory.de"
+    }
+  ],
+  "require": {
+    "php": ">=5.6",
+    "mfc/symfony-twig-bridge": "dev-master",
+    "symfony/http-foundation": "~3.0",
+    "symfony/http-kernel": "~3.0",
+    "typo3fluid/fluid": "^2.0"
+  },
+  "suggest": {
+    "symfony/finder": "",
+    "symfony/asset": "For using the AssetExtension",
+    "symfony/form": "For using the FormExtension",
+    "symfony/http-kernel": "For using the HttpKernelExtension",
+    "symfony/routing": "For using the RoutingExtension",
+    "symfony/templating": "For using the TwigEngine",
+    "symfony/translation": "For using the TranslationExtension",
+    "symfony/yaml": "For using the YamlExtension",
+    "symfony/security": "For using the SecurityExtension",
+    "symfony/stopwatch": "For using the StopwatchExtension",
+    "symfony/var-dumper": "For using the DumpExtension",
+    "symfony/expression-language": "For using the ExpressionExtension"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mfc\\Symfony\\Bundle\\FluidBundle\\": ""
+    },
+    "exclude-from-classmap": [
+      "/Tests/"
+    ]
+  },
+  "minimum-stability": "dev"
+}
