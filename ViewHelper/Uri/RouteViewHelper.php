@@ -1,15 +1,15 @@
 <?php
 
-namespace Mfc\Symfony\Bundle\FluidBundle\ViewHelper\Routing;
+namespace Mfc\Symfony\Bundle\FluidBundle\ViewHelper\Uri;
 
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
- * Class UriViewHelper
+ * Class RouteViewHelper
  * @package Mfc\Symfony\Bundle\Fluid\ViewHelper\Routing
  */
-class UriViewHelper extends AbstractViewHelper
+class RouteViewHelper extends AbstractViewHelper
 {
     /**
      * @var UrlGeneratorInterface
