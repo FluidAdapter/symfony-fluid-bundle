@@ -2,7 +2,7 @@
   "name": "mfc/symfony-fluid-bundle",
   "type": "symfony-bundle",
   "description": "MFC Symfony FluidBundle",
-  "keywords": [],
+  "keywords": ["symfony","fluid","templating"],
   "homepage": "http://www.marketing-factory.de/",
   "license": "MIT",
   "authors": [
@@ -13,7 +13,6 @@
   ],
   "require": {
     "php": ">=5.6",
-    "mfc/symfony-twig-bridge": "dev-master",
     "symfony/http-foundation": "~3.0",
     "symfony/http-kernel": "~3.0",
     "typo3fluid/fluid": "^2.0"
