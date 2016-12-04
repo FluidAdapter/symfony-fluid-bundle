@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Templating\Loader\LoaderInterface;
 use Symfony\Component\Templating\TemplateNameParserInterface;
 use Symfony\Component\Templating\TemplateReferenceInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperResolver;
 use TYPO3Fluid\Fluid\View\TemplatePaths;
 use TYPO3Fluid\Fluid\View\TemplateView;
 
@@ -32,10 +33,16 @@ class FluidEngine implements EngineInterface
      */
     private $loader;
 
-    public function __construct(TemplateView $fluid, TemplateNameParserInterface $nameParser, LoaderInterface $loader, ContainerInterface $container)
+    /**
+     * @var ViewHelperResolver
+     */
+    private $viewHelperResolver;
+
+    public function __construct(TemplateView $fluid, TemplateNameParserInterface $nameParser, LoaderInterface $loader, ViewHelperResolver $viewHelperResolver, ContainerInterface $container)
     {
         $this->fluid = $fluid;
         $this->nameParser = $nameParser;
+        $this->viewHelperResolver = $viewHelperResolver;
         $this->loader = $loader;
 
         // Default template paths
@@ -106,6 +113,8 @@ class FluidEngine implements EngineInterface
         //$this->fluid->getTemplatePaths()->setTemplatePathAndFilename($templatePath);
 
         $this->fluid->assignMultiple($parameters);
+        $this->fluid->getRenderingContext()->setViewHelperResolver($this->viewHelperResolver);
+
         return $this->fluid->render($name);
     }
 

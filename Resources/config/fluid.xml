@@ -7,10 +7,15 @@
     <services>
         <service id="fluid" class="TYPO3Fluid\Fluid\View\TemplateView" />
 
+        <service id="fluid.viewhelper_resolver" class="Mfc\Symfony\Bundle\FluidBundle\ViewHelper\ViewHelperResolver">
+            <argument type="service" id="service_container" />
+        </service>
+
         <service id="templating.engine.fluid" class="Mfc\Symfony\Bundle\FluidBundle\FluidEngine">
             <argument type="service" id="fluid" />
             <argument type="service" id="templating.name_parser"/>
             <argument type="service" id="templating.loader"/>
+            <argument type="service" id="fluid.viewhelper_resolver" />
             <argument type="service" id="service_container" />
             <tag name="templating.engine" />
             <tag name="monolog.logger" channel="FluidBundle" />

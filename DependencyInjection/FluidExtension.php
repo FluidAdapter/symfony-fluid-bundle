@@ -23,5 +23,6 @@ class FluidExtension extends Extension
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('fluid.xml');
+        $loader->load('viewhelper-routing.xml');
     }
 }
