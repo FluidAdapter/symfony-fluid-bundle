@@ -38,12 +38,18 @@ class FluidEngine implements EngineInterface
      */
     private $viewHelperResolver;
 
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
     public function __construct(TemplateView $fluid, TemplateNameParserInterface $nameParser, LoaderInterface $loader, ViewHelperResolver $viewHelperResolver, ContainerInterface $container)
     {
         $this->fluid = $fluid;
         $this->nameParser = $nameParser;
         $this->viewHelperResolver = $viewHelperResolver;
         $this->loader = $loader;
+        $this->container = $container;
 
         // Default template paths
         $templatePaths = [
@@ -113,6 +119,7 @@ class FluidEngine implements EngineInterface
         //$this->fluid->getTemplatePaths()->setTemplatePathAndFilename($templatePath);
 
         $this->fluid->assignMultiple($parameters);
+        $this->fluid->getRenderingContext()->getVariableProvider()->add('container', $this->container);
         $this->fluid->getRenderingContext()->setViewHelperResolver($this->viewHelperResolver);
 
         return $this->fluid->render($name);
