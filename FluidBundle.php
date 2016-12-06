@@ -8,6 +8,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 /**
  * Class FluidBundle
  * @package Mfc\Symfony\Fluid
+ * @author Christian Spoo <cs@marketing-factory.de>
  */
 class FluidBundle extends Bundle
 {

@@ -8,6 +8,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 /**
  * Class Configuration
  * @package Mfc\Symfony\Bundle\FluidBundle\DependencyInjection
+ * @author Christian Spoo <cs@marketing-factory.de>
  */
 class Configuration implements ConfigurationInterface
 {

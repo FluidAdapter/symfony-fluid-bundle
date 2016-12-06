@@ -15,6 +15,7 @@ use TYPO3Fluid\Fluid\View\TemplateView;
 /**
  * Class FluidEngine
  * @package Mfc\Symfony\Bundle\FluidBundle
+ * @author Christian Spoo <cs@marketing-factory.de>
  */
 class FluidEngine implements EngineInterface
 {

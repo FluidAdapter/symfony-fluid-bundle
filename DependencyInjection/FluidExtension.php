@@ -10,6 +10,7 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 /**
  * Class FluidExtension
  * @package Mfc\Symfony\Bundle\FluidBundle\DependencyInjection
+ * @author Christian Spoo <cs@marketing-factory.de>
  */
 class FluidExtension extends Extension
 {

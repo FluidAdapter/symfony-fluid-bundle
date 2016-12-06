@@ -6,6 +6,11 @@ use Mfc\Symfony\Bundle\FluidBundle\ViewHelper\Uri\RouteViewHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperResolver as BaseViewHelperResolver;
 
+/**
+ * Class ViewHelperResolver
+ * @package Mfc\Symfony\Bundle\FluidBundle\ViewHelper
+ * @author Christian Spoo <cs@marketing-factory.de>
+ */
 class ViewHelperResolver extends BaseViewHelperResolver
 {
     /**
