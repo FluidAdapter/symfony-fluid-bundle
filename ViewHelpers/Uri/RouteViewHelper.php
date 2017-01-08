@@ -1,6 +1,6 @@
 <?php
 
-namespace FluidAdapter\SymfonyFluidBundle\ViewHelper\Uri;
+namespace FluidAdapter\SymfonyFluidBundle\ViewHelpers\Uri;
 
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -31,7 +31,7 @@ class RouteViewHelper extends AbstractViewHelper
             $routeArgs = [];
         }
 
-        $urlGenerator = $renderingContext->getVariableProvider()->get('container')->get('router');
+        $urlGenerator = $renderingContext->getContainer()->get('router');
 
         return $urlGenerator->generate($routeName, $routeArgs);
     }
