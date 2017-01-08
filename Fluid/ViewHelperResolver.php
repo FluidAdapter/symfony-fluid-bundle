@@ -1,6 +1,6 @@
 <?php
 
-namespace FluidAdapter\SymfonyFluidBundle\ViewHelper;
+namespace FluidAdapter\SymfonyFluidBundle\Fluid;
 
 use FluidAdapter\SymfonyFluidBundle\ViewHelper\Uri\RouteViewHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;

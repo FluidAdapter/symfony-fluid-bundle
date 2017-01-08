@@ -2,7 +2,10 @@
 
 namespace FluidAdapter\SymfonyFluidBundle;
 
+use AppBundle\AppBundle;
+use FluidAdapter\SymfonyFluidBundle\Fluid\SymfonyTemplatePaths;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Templating\Loader\LoaderInterface;
@@ -25,63 +28,30 @@ class FluidEngine implements EngineInterface
     private $fluid;
 
     /**
-     * @var TemplateNameParserInterface
-     */
-    private $nameParser;
-
-    /**
-     * @var LoaderInterface
-     */
-    private $loader;
-
-    /**
      * @var ViewHelperResolver
      */
     private $viewHelperResolver;
+
+    /**
+     * @var TemplateNameParserInterface
+     */
+    protected $nameParser;
 
     /**
      * @var ContainerInterface
      */
     private $container;
 
-    public function __construct(TemplateView $fluid, TemplateNameParserInterface $nameParser, LoaderInterface $loader, ViewHelperResolver $viewHelperResolver, ContainerInterface $container)
+    public function __construct(TemplateView $fluid, TemplateNameParserInterface $nameParser, ContainerInterface $container)
     {
         $this->fluid = $fluid;
         $this->nameParser = $nameParser;
-        $this->viewHelperResolver = $viewHelperResolver;
-        $this->loader = $loader;
         $this->container = $container;
 
-        // Default template paths
-        $templatePaths = [
-            TemplatePaths::CONFIG_TEMPLATEROOTPATHS => [
-                $container->getParameter('kernel.root_dir') . '/Resources/views/Templates'
-            ],
-            TemplatePaths::CONFIG_LAYOUTROOTPATHS => [
-                $container->getParameter('kernel.root_dir') . '/Resources/views/Layouts'
-            ],
-            TemplatePaths::CONFIG_PARTIALROOTPATHS => [
-                $container->getParameter('kernel.root_dir') . '/Resources/views/Partials'
-            ]
-        ];
-
-        /**
-         * Define a set of template dirs to look for. This will allow the
-         * usage of the following syntax:
-         * <code>WebkitBundle:Default:layout.html</code>
-         */
-        foreach ($container->getParameter('kernel.bundles') as $bundle) {
-            $name = explode('\\', $bundle);
-            $name = end($name);
-            $reflection = new \ReflectionClass($bundle);
-            if (is_dir($dir = dirname($reflection->getFilename()) . '/Resources/views')) {
-                $templatePaths[TemplatePaths::CONFIG_TEMPLATEROOTPATHS][] = $dir . '/Templates';
-                $templatePaths[TemplatePaths::CONFIG_LAYOUTROOTPATHS][] = $dir . '/Layouts';
-                $templatePaths[TemplatePaths::CONFIG_PARTIALROOTPATHS][] = $dir . '/Partials';
-            }
-        }
-        var_dump($templatePaths);
-        $this->fluid->getTemplatePaths()->fillFromConfigurationArray($templatePaths);
+        $this->kernel = $this->container->get('kernel');
+        $fluid->setRenderingContext($container->get('fluid.renderingContext'));
+        $this->fluid->getRenderingContext()->setTemplatePaths($container->get('fluid.symfonyTemplatePaths'));
+        $this->fluid->getRenderingContext()->setContainer($container);
     }
 
     /**
@@ -117,14 +87,8 @@ class FluidEngine implements EngineInterface
      */
     public function render($name, array $parameters = array())
     {
-        //$templatePath = $this->load($name);
-        //$this->fluid->getTemplatePaths()->setTemplatePathAndFilename($templatePath);
-        var_dump($name);
-
         $this->fluid->assignMultiple($parameters);
-        $this->fluid->getRenderingContext()->getVariableProvider()->add('container', $this->container);
-        $this->fluid->getRenderingContext()->setViewHelperResolver($this->viewHelperResolver);
-
+        $this->fluid->getTemplatePaths()->setTemplatePathAndFilename($this->load($name));
         return $this->fluid->render($name);
     }
 
@@ -139,9 +103,7 @@ class FluidEngine implements EngineInterface
      */
     public function exists($name)
     {
-        $this->load($name);
-
-        return true;
+        return !empty($this->load($name));
     }
 
     /**
@@ -159,17 +121,19 @@ class FluidEngine implements EngineInterface
         return 'fluid' === $engine || 'html' === $engine;
     }
 
-    private function load($name)
+    protected function load($name)
     {
-        $template = $this->nameParser->parse($name);
-        $template = $this->loader->load($template);
-
-        if ($template === false) {
-            throw new \RuntimeException(sprintf(
-                'Could not load template "%s"',
-                $name
-            ));
+        if (!preg_match('/^([^:]*):([^:]*):(.+)\.([^\.]+)\.*([^\.]*)$/', $name, $matches)) {
+            return $this->fluid->getTemplatePaths()->resolveTemplateFile($name);
         }
-        return (string)$template;
+
+        $bundle = $this->kernel->getBundle($matches[1]);
+        if (!$bundle instanceof AppBundle) {
+            throw new \Exception('Could not find a Bundle named "' . $matches[1] . '"');
+        }
+
+        $this->fluid->getTemplatePaths()->addBasePath($bundle->getPath());
+
+        return $this->fluid->getTemplatePaths()->resolveTemplateFileForControllerAndActionAndFormat($matches[2], $matches[3]);
     }
 }

@@ -7,18 +7,24 @@
     <services>
         <service id="fluid" class="TYPO3Fluid\Fluid\View\TemplateView" />
 
-        <service id="fluid.viewhelper_resolver" class="FluidAdapter\SymfonyFluidBundle\ViewHelper\ViewHelperResolver">
+        <service id="fluid.viewhelper_resolver" class="FluidAdapter\SymfonyFluidBundle\Fluid\ViewHelperResolver">
             <argument type="service" id="service_container" />
+        </service>
+
+        <service id="fluid.renderingContext" class="FluidAdapter\SymfonyFluidBundle\Fluid\RenderingContext">
+            <argument type="service" id="fluid" />
         </service>
 
         <service id="templating.engine.fluid" class="FluidAdapter\SymfonyFluidBundle\FluidEngine">
             <argument type="service" id="fluid" />
             <argument type="service" id="templating.name_parser"/>
-            <argument type="service" id="templating.loader"/>
-            <argument type="service" id="fluid.viewhelper_resolver" />
             <argument type="service" id="service_container" />
             <tag name="templating.engine" />
             <tag name="monolog.logger" channel="FluidBundle" />
+        </service>
+
+        <service id="fluid.symfonyTemplatePaths" class="FluidAdapter\SymfonyFluidBundle\Fluid\SymfonyTemplatePaths">
+            <argument type="service" id="service_container" />
         </service>
     </services>
 </container>
