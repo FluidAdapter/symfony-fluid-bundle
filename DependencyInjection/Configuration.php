@@ -1,13 +1,13 @@
 <?php
 
-namespace Mfc\Symfony\Bundle\FluidBundle\DependencyInjection;
+namespace FluidAdapter\SymfonyFluidBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
  * Class Configuration
- * @package Mfc\Symfony\Bundle\FluidBundle\DependencyInjection
+ * @package FluidAdapter\SymfonyFluidBundle\DependencyInjection
  * @author Christian Spoo <cs@marketing-factory.de>
  */
 class Configuration implements ConfigurationInterface

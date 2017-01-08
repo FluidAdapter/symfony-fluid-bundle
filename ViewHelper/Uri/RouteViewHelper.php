@@ -1,13 +1,13 @@
 <?php
 
-namespace Mfc\Symfony\Bundle\FluidBundle\ViewHelper\Uri;
+namespace FluidAdapter\SymfonyFluidBundle\ViewHelper\Uri;
 
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * Class RouteViewHelper
- * @package Mfc\Symfony\Bundle\Fluid\ViewHelper\Routing
+ * @package FluidAdapter\SymfonyFluidBundle\Fluid\ViewHelper\Routing
  * @author Christian Spoo <cs@marketing-factory.de>
  */
 class RouteViewHelper extends AbstractViewHelper

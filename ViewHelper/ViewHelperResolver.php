@@ -1,14 +1,14 @@
 <?php
 
-namespace Mfc\Symfony\Bundle\FluidBundle\ViewHelper;
+namespace FluidAdapter\SymfonyFluidBundle\ViewHelper;
 
-use Mfc\Symfony\Bundle\FluidBundle\ViewHelper\Uri\RouteViewHelper;
+use FluidAdapter\SymfonyFluidBundle\ViewHelper\Uri\RouteViewHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperResolver as BaseViewHelperResolver;
 
 /**
  * Class ViewHelperResolver
- * @package Mfc\Symfony\Bundle\FluidBundle\ViewHelper
+ * @package FluidAdapter\SymfonyFluidBundle\ViewHelper
  * @author Christian Spoo <cs@marketing-factory.de>
  */
 class ViewHelperResolver extends BaseViewHelperResolver

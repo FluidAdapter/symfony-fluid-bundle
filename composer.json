@@ -1,14 +1,18 @@
 {
-  "name": "mfc/symfony-fluid-bundle",
+  "name": "fluid-adapter/symfony-fluid-bundle",
   "type": "symfony-bundle",
-  "description": "MFC Symfony FluidBundle",
+  "description": "Fluid integration for Symfony",
   "keywords": ["symfony","fluid","templating"],
-  "homepage": "http://www.marketing-factory.de/",
+  "homepage": "https://github.com/FluidAdapter/symfony-fluid-bundle",
   "license": "MIT",
   "authors": [
     {
       "name": "Christian Spoo",
       "email": "cs@marketing-factory.de"
+    },
+    {
+      "name": "Marc Neuhaus",
+      "email": "marc@mia3.com"
     }
   ],
   "require": {
@@ -17,23 +21,9 @@
     "symfony/http-kernel": "~3.0",
     "typo3fluid/fluid": "^2.0"
   },
-  "suggest": {
-    "symfony/finder": "",
-    "symfony/asset": "For using the AssetExtension",
-    "symfony/form": "For using the FormExtension",
-    "symfony/http-kernel": "For using the HttpKernelExtension",
-    "symfony/routing": "For using the RoutingExtension",
-    "symfony/templating": "For using the TwigEngine",
-    "symfony/translation": "For using the TranslationExtension",
-    "symfony/yaml": "For using the YamlExtension",
-    "symfony/security": "For using the SecurityExtension",
-    "symfony/stopwatch": "For using the StopwatchExtension",
-    "symfony/var-dumper": "For using the DumpExtension",
-    "symfony/expression-language": "For using the ExpressionExtension"
-  },
   "autoload": {
     "psr-4": {
-      "Mfc\\Symfony\\Bundle\\FluidBundle\\": ""
+      "FluidAdapter\\SymfonyFluidBundle\\": ""
     },
     "exclude-from-classmap": [
       "/Tests/"

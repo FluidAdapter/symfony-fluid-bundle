@@ -1,6 +1,6 @@
 <?php
 
-namespace Mfc\Symfony\Bundle\FluidBundle;
+namespace FluidAdapter\SymfonyFluidBundle;
 
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -14,7 +14,7 @@ use TYPO3Fluid\Fluid\View\TemplateView;
 
 /**
  * Class FluidEngine
- * @package Mfc\Symfony\Bundle\FluidBundle
+ * @package FluidAdapter\SymfonyFluidBundle
  * @author Christian Spoo <cs@marketing-factory.de>
  */
 class FluidEngine implements EngineInterface
@@ -80,6 +80,7 @@ class FluidEngine implements EngineInterface
                 $templatePaths[TemplatePaths::CONFIG_PARTIALROOTPATHS][] = $dir . '/Partials';
             }
         }
+        var_dump($templatePaths);
         $this->fluid->getTemplatePaths()->fillFromConfigurationArray($templatePaths);
     }
 
@@ -118,6 +119,7 @@ class FluidEngine implements EngineInterface
     {
         //$templatePath = $this->load($name);
         //$this->fluid->getTemplatePaths()->setTemplatePathAndFilename($templatePath);
+        var_dump($name);
 
         $this->fluid->assignMultiple($parameters);
         $this->fluid->getRenderingContext()->getVariableProvider()->add('container', $this->container);
