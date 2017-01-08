@@ -23,7 +23,7 @@
   },
   "autoload": {
     "psr-4": {
-      "FluidAdapter\\SymfonyFluidBundle\\": ""
+      "FluidAdapter\\SymfonyFluidBundle\\": "src"
     },
     "exclude-from-classmap": [
       "/Tests/"
