@@ -6,6 +6,9 @@ namespace FluidAdapter\SymfonyFluidBundle\ViewHelpers;
  * See LICENSE.txt that was shipped with this package.
  */
 use Symfony\Component\VarDumper\VarDumper;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 /**
  *
@@ -28,8 +31,20 @@ use Symfony\Component\VarDumper\VarDumper;
  *
  * @api
  */
-class DebugViewHelper extends \TYPO3Fluid\Fluid\ViewHelpers\DebugViewHelper
+class DebugViewHelper extends AbstractViewHelper
 {
+
+    use CompileWithRenderStatic;
+
+    /**
+     * @var boolean
+     */
+    protected $escapeChildren = false;
+
+    /**
+     * @var boolean
+     */
+    protected $escapeOutput = false;
 
     /**
      * @param array $arguments
@@ -37,14 +52,8 @@ class DebugViewHelper extends \TYPO3Fluid\Fluid\ViewHelpers\DebugViewHelper
      * @param RenderingContextInterface $renderingContext
      * @return string
      */
-    public static function renderStatic(
-        array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
-    ) {
-        $expressionToExamine = $renderChildrenClosure();
-        echo 'woot?';
-        VarDumper::dump($expressionToExamine);
+    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
+    {
+        VarDumper::dump($renderChildrenClosure());
     }
-
 }
