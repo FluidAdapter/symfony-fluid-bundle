@@ -25,7 +25,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->treatNullLike([
-                'enabled' => true
+                'enabled' => true,
             ])
             ->end();
 

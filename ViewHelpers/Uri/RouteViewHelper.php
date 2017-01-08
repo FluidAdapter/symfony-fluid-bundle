@@ -23,10 +23,14 @@ class RouteViewHelper extends AbstractViewHelper
         return static::renderStatic($this->arguments, $this->buildRenderChildrenClosure(), $this->renderingContext);
     }
 
-    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
-    {
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ) {
         $routeName = $arguments['route'];
         $routeArgs = $arguments['arguments'];
+
         if (!is_array($routeArgs)) {
             $routeArgs = [];
         }

@@ -28,7 +28,8 @@ use Symfony\Component\VarDumper\VarDumper;
  *
  * @api
  */
-class DebugViewHelper extends \TYPO3Fluid\Fluid\ViewHelpers\DebugViewHelper {
+class DebugViewHelper extends \TYPO3Fluid\Fluid\ViewHelpers\DebugViewHelper
+{
 
     /**
      * @param array $arguments
@@ -36,7 +37,11 @@ class DebugViewHelper extends \TYPO3Fluid\Fluid\ViewHelpers\DebugViewHelper {
      * @param RenderingContextInterface $renderingContext
      * @return string
      */
-    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext) {
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ) {
         $expressionToExamine = $renderChildrenClosure();
         echo 'woot?';
         VarDumper::dump($expressionToExamine);

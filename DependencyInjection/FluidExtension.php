@@ -17,7 +17,7 @@ class FluidExtension extends Extension
     /**
      * Responds to the fluid configuration parameter.
      *
-     * @param array            $configs
+     * @param array $configs
      * @param ContainerBuilder $container
      */
     public function load(array $configs, ContainerBuilder $container)
