@@ -35,14 +35,13 @@ class RouteViewHelper extends AbstractTagBasedViewHelper
      */
     public function render()
     {
-
-        $routeName = $this->arguments['name'];
-        $routeArgs = $this->arguments['arguments'];
-
         $urlGenerator = $this->renderingContext->getContainer()->get('router');
 
         $this->tag->setContent($this->renderChildren());
-        $this->tag->addAttribute('href', $urlGenerator->generate($routeName, $routeArgs));
+        $this->tag->addAttribute('href', $urlGenerator->generate(
+            $this->arguments['name'],
+            $this->arguments['arguments']
+        ));
 
         return $this->tag->render();
     }
