@@ -21,6 +21,7 @@
     "symfony/http-kernel": "~3.0",
     "symfony/routing": "~3.0",
     "symfony/dependency-injection": "~3.0",
+    "symfony/form": "~3.0",
     "typo3fluid/fluid": "^2.0"
   },
   "require-dev": {
