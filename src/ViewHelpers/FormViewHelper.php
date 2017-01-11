@@ -56,7 +56,11 @@ class FormViewHelper extends AbstractTagBasedViewHelper
      */
     public function render()
     {
-        $this->tag->setContent($this->renderChildren());
+        $content = $this->renderChildren();
+        if (empty($content)) {
+            $content = $this->viewHelperVariableContainer->getView()->renderPartial('Form/Rows', NULL, $this->arguments);
+        }
+        $this->tag->setContent($content);
 
         return $this->tag->render();
     }

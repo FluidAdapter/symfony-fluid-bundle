@@ -46,6 +46,8 @@ class SymfonyTemplatePaths extends \TYPO3Fluid\Fluid\View\TemplatePaths
 
     public function __construct(ContainerInterface $container)
     {
+        $bundle = $container->get('kernel')->getBundle('FluidBundle');
+        $this->addBasePath($bundle->getPath() . '/..');
         $this->addBasePath($container->getParameter('kernel.root_dir'));
     }
 
