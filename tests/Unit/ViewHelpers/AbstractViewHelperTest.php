@@ -41,21 +41,25 @@ abstract class AbstractViewHelperTest extends \PHPUnit_Framework_TestCase
     public function setUpContainer() {
         $container = $this->createMock(ContainerInterface::class);
         $this->renderingContext->expects($this->any())->method('getContainer')->willReturn($container);
+        return $container;
     }
 
     public function setUpViewHelperInvoker() {
         $viewHelperInvoker = new ViewHelperInvoker();
         $this->renderingContext->expects($this->any())->method('getViewHelperInvoker')->willReturn($viewHelperInvoker);
+        return $viewHelperInvoker;
     }
 
     public function setUpViewHelperResolver() {
         $viewHelperResolver = new ViewHelperResolver();
         $this->renderingContext->expects($this->any())->method('getViewHelperResolver')->willReturn($viewHelperResolver);
+        return $viewHelperResolver;
     }
 
     public function setUpViewHelperVariableContainer() {
         $viewHelperVariableContainer = new ViewHelperVariableContainer();
         $this->renderingContext->expects($this->any())->method('getViewHelperVariableContainer')->willReturn($viewHelperVariableContainer);
+        return $viewHelperVariableContainer;
     }
 
     /**

@@ -26,8 +26,10 @@ class RouteViewHelper extends AbstractTagBasedViewHelper
      */
     public function initializeArguments()
     {
+        parent::initializeArguments();
         $this->registerArgument('name', 'string', 'The route name whose route should be generated', true);
         $this->registerArgument('arguments', 'array', 'The route arguments', false, array());
+        $this->registerTagAttribute('class', 'string', 'tag classes');
     }
 
     /**

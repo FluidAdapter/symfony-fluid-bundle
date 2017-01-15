@@ -3,44 +3,53 @@
 namespace FluidAdapter\SymfonyFluidBundle\Tests\Unit\ViewHelpers\Link;
 
 use FluidAdapter\SymfonyFluidBundle\Fluid\RenderingContext;
+use FluidAdapter\SymfonyFluidBundle\Tests\Unit\ViewHelpers\AbstractViewHelperTest;
 use FluidAdapter\SymfonyFluidBundle\ViewHelpers\Link\RouteViewHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class RouteViewHelperTest extends \PHPUnit_Framework_TestCase
+class RouteViewHelperTest extends AbstractViewHelperTest
 {
+
+    /**
+     * @var string
+     */
+    protected $className = RouteViewHelper::class;
+
+    public function setUpContainer() {
+        $container = parent::setUpContainer();
+        $urlGenerator = $this->createMock(UrlGeneratorInterface::class);
+        $urlGenerator->expects($this->any())->method('generate')->willReturn('foo/bar');
+        $container->expects($this->any())->method('get')->willReturn($urlGenerator);
+        return $container;
+    }
     /**
      * @test
      */
-    public function basicRouteIsGenerated()
+    public function simpleArgumentsBasedOutput()
     {
-        $renderingContext = $this->createRendereringContextThatReturnsUrlGeneratorWithRoute('foo/bar');
-        $viewHelper = $this->getMockBuilder(RouteViewHelper::class)
-            ->setMethods(['renderChildren'])
-            ->getMock();
-        $viewHelper->expects($this->once())->method('renderChildren')->willReturn('link text');
-        $viewHelper->setRenderingContext($renderingContext);
-        $viewHelper->setArguments(array(
-            'name' => 'someRoute',
-            'arguments' => array(),
-        ));
-        $generatedRoute = $viewHelper->render();
-        $this->assertEquals('<a href="foo/bar">link text</a>', $generatedRoute);
+        $this->assertViewHelperOutput(
+            [
+                'name' => 'someRoute',
+                'arguments' => array(),
+            ],
+            '<a href="foo/bar">link text</a>',
+            function() {
+                return 'link text';
+            }
+        );
+
+        $this->assertViewHelperOutput(
+            [
+                'name' => 'someRoute',
+                'arguments' => array(),
+                'class' => 'foo-bar'
+            ],
+            '<a class="foo-bar" href="foo/bar">link text</a>',
+            function() {
+                return 'link text';
+            }
+        );
     }
 
-    /**
-     * @param $route
-     * @return \PHPUnit_Framework_MockObject_MockObject
-     */
-    public function createRendereringContextThatReturnsUrlGeneratorWithRoute($route)
-    {
-        $renderingContext = $this->createMock(RenderingContext::class);
-        $urlGenerator = $this->createMock(UrlGeneratorInterface::class);
-        $urlGenerator->expects($this->once())->method('generate')->willReturn($route);
-        $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->once())->method('get')->willReturn($urlGenerator);
-        $renderingContext->expects($this->once())->method('getContainer')->willReturn($container);
-
-        return $renderingContext;
-    }
 }
