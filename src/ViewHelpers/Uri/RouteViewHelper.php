@@ -15,7 +15,7 @@ class RouteViewHelper extends AbstractViewHelper
     public function initializeArguments()
     {
         $this->registerArgument('name', 'string', 'The route name whose route should be generated', true);
-        $this->registerArgument('arguments', 'array', 'The route arguments', false);
+        $this->registerArgument('arguments', 'array', 'The route arguments', false, array());
     }
 
     public function render()
