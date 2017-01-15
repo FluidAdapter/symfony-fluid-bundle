@@ -23,6 +23,7 @@ class RouteViewHelperTest extends AbstractViewHelperTest
         $container->expects($this->any())->method('get')->willReturn($urlGenerator);
         return $container;
     }
+
     /**
      * @test
      */

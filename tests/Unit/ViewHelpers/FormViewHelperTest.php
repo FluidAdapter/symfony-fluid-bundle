@@ -15,6 +15,11 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperResolver;
 class FormViewHelperTest extends AbstractViewHelperTest
 {
 
+    /**
+     * @var string
+     */
+    protected $className = FormViewHelper::class;
+
     public function setUpViewHelperVariableContainer() {
         $viewHelperVariableContainer = $this->getMockBuilder(ViewHelperVariableContainer::class)->setMethods(['getView'])->getMock();
         $this->renderingContext->expects($this->any())->method('getViewHelperVariableContainer')->willReturn($viewHelperVariableContainer);
@@ -24,10 +29,6 @@ class FormViewHelperTest extends AbstractViewHelperTest
 
         $view->expects($this->any())->method('renderPartial')->willReturn('');
     }
-    /**
-     * @var string
-     */
-    protected $className = FormViewHelper::class;
 
     /**
      * @test
