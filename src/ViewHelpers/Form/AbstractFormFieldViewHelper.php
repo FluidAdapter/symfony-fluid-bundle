@@ -27,4 +27,17 @@ abstract class AbstractFormFieldViewHelper extends AbstractTagBasedViewHelper
         $this->registerArgument('value', 'mixed', 'Value of input tag');
     }
 
+    /**
+     * Renders a hidden field with the same name as the element, to make sure the empty value is submitted
+     * in case nothing is selected. This is needed for checkbox and multiple select fields
+     *
+     * @return string the hidden field.
+     */
+    protected function renderHiddenFieldForEmptyValue()
+    {
+        return sprintf(
+            '<input type="hidden" name="%s" value="" />',
+            $this->arguments['name']
+        );
+    }
 }

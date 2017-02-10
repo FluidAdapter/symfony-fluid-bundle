@@ -73,7 +73,7 @@ class CheckboxViewHelper extends AbstractFormFieldViewHelper
         }
 
 //        $this->setErrorClassAttribute();
-        $hiddenField = sprintf('<input type="hidden" name="%s" value="" />', $this->arguments['name']);
+        $hiddenField = $this->renderHiddenFieldForEmptyValue();
 
         return $hiddenField . $this->tag->render();
     }
