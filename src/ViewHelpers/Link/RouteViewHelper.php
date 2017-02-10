@@ -30,6 +30,7 @@ class RouteViewHelper extends AbstractTagBasedViewHelper
         $this->registerArgument('name', 'string', 'The route name whose route should be generated', true);
         $this->registerArgument('arguments', 'array', 'The route arguments', false, array());
         $this->registerTagAttribute('class', 'string', 'tag classes');
+        $this->registerArgument('absolute', 'boolean', 'Generate a absolute url including domain', false, false);
     }
 
     /**
@@ -39,11 +40,21 @@ class RouteViewHelper extends AbstractTagBasedViewHelper
     {
         $urlGenerator = $this->renderingContext->getContainer()->get('router');
 
+        if ($this->arguments['absolute']) {
+            $url = $urlGenerator->generate(
+                $this->arguments['name'],
+                $this->arguments['arguments'],
+                Router::ABSOLUTE_URL
+            );
+        } else {
+            $url = $urlGenerator->generate(
+                $this->arguments['name'],
+                $this->arguments['arguments']
+            );
+        }
+
         $this->tag->setContent($this->renderChildren());
-        $this->tag->addAttribute('href', $urlGenerator->generate(
-            $this->arguments['name'],
-            $this->arguments['arguments']
-        ));
+        $this->tag->addAttribute('href', $url);
 
         return $this->tag->render();
     }
