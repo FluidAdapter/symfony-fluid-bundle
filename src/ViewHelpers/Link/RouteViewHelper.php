@@ -2,6 +2,7 @@
 
 namespace FluidAdapter\SymfonyFluidBundle\ViewHelpers\Link;
 
+use Symfony\Component\Routing\Router;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
