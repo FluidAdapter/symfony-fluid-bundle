@@ -3,28 +3,25 @@
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
     <services>
-        <service id="fluid" class="TYPO3Fluid\Fluid\View\TemplateView" />
-
-        <service id="fluid.viewhelper_resolver" class="FluidAdapter\SymfonyFluidBundle\Fluid\ViewHelperResolver">
+        <service id="fluid.symfonyTemplatePaths" class="FluidAdapter\SymfonyFluidBundle\Fluid\SymfonyTemplatePaths">
             <argument type="service" id="service_container" />
         </service>
 
-        <service id="fluid.renderingContext" class="FluidAdapter\SymfonyFluidBundle\Fluid\RenderingContext">
-            <argument type="service" id="fluid" />
+        <service id="fluid.templateViewFactory" class="FluidAdapter\SymfonyFluidBundle\TemplateViewFactory" />
+
+        <service id="fluid.template_view" class="TYPO3Fluid\Fluid\View\TemplateView">
+            <factory service="fluid.templateViewFactory" method="createTemplateView"/>
+            <argument type="service" id="service_container" />
+            <argument type="service" id="fluid.symfonyTemplatePaths" />
         </service>
 
         <service id="templating.engine.fluid" class="FluidAdapter\SymfonyFluidBundle\FluidEngine">
-            <argument type="service" id="fluid" />
+            <argument type="service" id="fluid.template_view" />
             <argument type="service" id="templating.name_parser"/>
             <argument type="service" id="service_container" />
             <tag name="templating.engine" />
             <tag name="monolog.logger" channel="FluidBundle" />
-        </service>
-
-        <service id="fluid.symfonyTemplatePaths" class="FluidAdapter\SymfonyFluidBundle\Fluid\SymfonyTemplatePaths">
-            <argument type="service" id="service_container" />
         </service>
     </services>
 </container>

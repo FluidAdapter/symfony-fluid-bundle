@@ -49,9 +49,6 @@ class FluidEngine implements EngineInterface
         $this->container = $container;
 
         $this->kernel = $this->container->get('kernel');
-        $fluid->setRenderingContext($container->get('fluid.renderingContext'));
-        $this->fluid->getRenderingContext()->setTemplatePaths($container->get('fluid.symfonyTemplatePaths'));
-        $this->fluid->getRenderingContext()->setContainer($container);
     }
 
     /**
