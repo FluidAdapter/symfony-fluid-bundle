@@ -5,6 +5,7 @@ namespace FluidAdapter\SymfonyFluidBundle\Fluid;
 
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Symfony\Component\HttpFoundation\Request;
 use TYPO3Fluid\Fluid\View\ViewInterface;
 
 /**
@@ -42,5 +43,16 @@ class RenderingContext extends \TYPO3Fluid\Fluid\Core\Rendering\RenderingContext
     public function getContainer()
     {
         return $this->container;
+    }
+
+    public function __sleep() {
+        return [];
+    }
+
+    /**
+     * @return Request
+     */
+    public function getRequest() {
+        return $this->container->get('request_stack')->getCurrentRequest();
     }
 }
