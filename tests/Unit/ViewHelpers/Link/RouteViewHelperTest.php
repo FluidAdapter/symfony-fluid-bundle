@@ -33,6 +33,7 @@ class RouteViewHelperTest extends AbstractViewHelperTest
             [
                 'name' => 'someRoute',
                 'arguments' => array(),
+                'absolute' => false
             ],
             '<a href="foo/bar">link text</a>',
             function() {
@@ -44,7 +45,8 @@ class RouteViewHelperTest extends AbstractViewHelperTest
             [
                 'name' => 'someRoute',
                 'arguments' => array(),
-                'class' => 'foo-bar'
+                'class' => 'foo-bar',
+                'absolute' => false
             ],
             '<a class="foo-bar" href="foo/bar">link text</a>',
             function() {

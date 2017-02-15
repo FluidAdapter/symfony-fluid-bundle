@@ -20,6 +20,7 @@ class RouteViewHelperTest extends \PHPUnit_Framework_TestCase
         $viewHelper->setArguments(array(
             'name' => 'someRoute',
             'arguments' => array(),
+            'absolute' => false
         ));
         $generatedRoute = $viewHelper->render();
         $this->assertEquals('foo/bar', $generatedRoute);
