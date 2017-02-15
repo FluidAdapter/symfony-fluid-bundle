@@ -30,8 +30,15 @@ class LabelViewHelper extends AbstractTagBasedViewHelper
     public function render()
     {
         $arguments = $this->arguments['item']->vars;
+        if (empty($arguments['label'])) {
+            $arguments['label'] = $this->humanize($arguments['name']);
+        }
         $this->tag->addAttribute('for', $arguments['id']);
         $this->tag->setContent($arguments['label']);
         return $this->tag->render();
+    }
+
+    public function humanize($text) {
+        return ucfirst(trim(strtolower(preg_replace(array('/([A-Z])/', '/[_\s]+/'), array('_$1', ' '), $text))));
     }
 }
