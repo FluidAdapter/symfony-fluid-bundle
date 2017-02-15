@@ -4,10 +4,11 @@ namespace FluidAdapter\SymfonyFluidBundle\Tests\Unit\ViewHelpers\Uri;
 
 use FluidAdapter\SymfonyFluidBundle\Fluid\RenderingContext;
 use FluidAdapter\SymfonyFluidBundle\ViewHelpers\Uri\RouteViewHelper;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class RouteViewHelperTest extends \PHPUnit_Framework_TestCase
+class RouteViewHelperTest extends TestCase
 {
     /**
      * @test

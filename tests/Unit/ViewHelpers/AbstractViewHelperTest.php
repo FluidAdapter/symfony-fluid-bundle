@@ -5,13 +5,14 @@ namespace FluidAdapter\SymfonyFluidBundle\Tests\Unit\ViewHelpers;
 use FluidAdapter\SymfonyFluidBundle\Fluid\RenderingContext;
 use FluidAdapter\SymfonyFluidBundle\ViewHelpers\FormViewHelper;
 use FluidAdapter\SymfonyFluidBundle\ViewHelpers\Uri\RouteViewHelper;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInvoker;
 use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperResolver;
 use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperVariableContainer;
 
-abstract class AbstractViewHelperTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractViewHelperTest extends TestCase
 {
     /**
      * @var string
