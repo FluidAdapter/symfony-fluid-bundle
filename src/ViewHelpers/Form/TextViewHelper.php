@@ -26,6 +26,7 @@ class TextViewHelper extends AbstractTagBasedViewHelper
         parent::initializeArguments();
         $this->registerTagAttribute('type', 'string', 'Type to use for this input', false, 'text');
         $this->registerTagAttribute('name', 'string', 'Name to use for this form', false);
+        $this->registerTagAttribute('step', 'string', 'step to apply', false);
         $this->registerArgument('value', 'string', 'Value to use for this input', false);
     }
 
