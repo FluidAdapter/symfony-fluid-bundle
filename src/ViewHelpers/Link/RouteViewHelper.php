@@ -32,6 +32,7 @@ class RouteViewHelper extends AbstractTagBasedViewHelper
         $this->registerArgument('arguments', 'array', 'The route arguments', false, array());
         $this->registerTagAttribute('class', 'string', 'tag classes');
         $this->registerArgument('absolute', 'boolean', 'Generate a absolute url including domain', false, false);
+        $this->registerArgument('section', 'string', 'The anchor to be added to the URI.', false);
     }
 
     /**
@@ -52,6 +53,10 @@ class RouteViewHelper extends AbstractTagBasedViewHelper
                 $this->arguments['name'],
                 $this->arguments['arguments']
             );
+        }
+
+        if (!empty($this->arguments['section'])) {
+            $url = $url . '#' . $this->arguments['section'];
         }
 
         $this->tag->setContent($this->renderChildren());

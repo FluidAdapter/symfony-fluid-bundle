@@ -23,5 +23,10 @@
             <tag name="templating.engine" />
             <tag name="monolog.logger" channel="FluidBundle" />
         </service>
+
+        <service id="fluid.translation.extractor" class="FluidAdapter\SymfonyFluidBundle\Translation\FluidExtractor">
+            <argument type="service" id="fluid.template_view" />
+            <tag name="translation.extractor" alias="fluid" />
+        </service>
     </services>
 </container>
