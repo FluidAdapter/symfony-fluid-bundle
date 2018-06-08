@@ -1,10 +1,6 @@
 <?php
 namespace FluidAdapter\SymfonyFluidBundle\Fluid;
 
-/*
- * This file belongs to the package "TYPO3 Fluid".
- * See LICENSE.txt that was shipped with this package.
- */
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use TYPO3Fluid\Fluid\View\Exception\InvalidTemplateResourceException;
 use TYPO3Fluid\Fluid\View\TemplatePaths;
@@ -40,15 +36,15 @@ use TYPO3Fluid\Fluid\View\TemplatePaths;
 class SymfonyTemplatePaths extends \TYPO3Fluid\Fluid\View\TemplatePaths
 {
 
-    const DEFAULT_TEMPLATES_DIRECTORY = '/Resources/views/Templates/';
-    const DEFAULT_LAYOUTS_DIRECTORY = '/Resources/views/Layouts/';
-    const DEFAULT_PARTIALS_DIRECTORY = '/Resources/views/Partials/';
+    const DEFAULT_TEMPLATES_DIRECTORY = '/Templates/';
+    const DEFAULT_LAYOUTS_DIRECTORY = '/Layouts/';
+    const DEFAULT_PARTIALS_DIRECTORY = '/Partials/';
 
     public function __construct(ContainerInterface $container)
     {
         $bundle = $container->get('kernel')->getBundle('FluidBundle');
-        $this->addBasePath($bundle->getPath() . '/..');
-        $this->addBasePath($container->getParameter('kernel.root_dir'));
+        $this->addBasePath($bundle->getPath() . '/../Resources/views');
+        $this->addBasePath($container->getParameter('kernel.project_dir') . '/templates');
     }
 
     /**
