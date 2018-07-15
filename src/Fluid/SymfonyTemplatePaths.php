@@ -72,17 +72,17 @@ class SymfonyTemplatePaths extends \TYPO3Fluid\Fluid\View\TemplatePaths
         if ($this->templatePathAndFilename !== null) {
             return $this->templatePathAndFilename;
         }
-        if (!array_key_exists($path, self::$resolvedFiles['templates'])) {
+        if (!array_key_exists($path, $this->resolvedFiles['templates'])) {
             $templateRootPaths = $this->getTemplateRootPaths();
             try {
-                return self::$resolvedFiles['templates'][$path] = $this->resolveFileInPaths($templateRootPaths, $path,
+                return $this->resolvedFiles['templates'][$path] = $this->resolveFileInPaths($templateRootPaths, $path,
                     $format);
             } catch (InvalidTemplateResourceException $error) {
-                self::$resolvedFiles['templates'][$path] = null;
+                $this->resolvedFiles['templates'][$path] = null;
             }
         }
 
-        return isset(self::$resolvedFiles[self::NAME_TEMPLATES][$path]) ? self::$resolvedFiles[self::NAME_TEMPLATES][$identifier] : null;
+        return isset($this->resolvedFiles[self::NAME_TEMPLATES][$path]) ? $this->resolvedFiles[self::NAME_TEMPLATES][$identifier] : null;
     }
 
 }
