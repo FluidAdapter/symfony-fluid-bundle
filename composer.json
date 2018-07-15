@@ -23,6 +23,7 @@
     "symfony/dependency-injection": "^4.0",
     "symfony/form": "^4.0",
     "symfony/asset": "^4.0",
+    "symfony/templating": "^4.1",
     "typo3fluid/fluid": "^2.0"
   },
   "require-dev": {
