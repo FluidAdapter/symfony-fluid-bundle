@@ -10,11 +10,11 @@ composer require fluid-adapter/symfony-fluid-bundle
 
 2. activate bundle
 
-Add ```new FluidAdapter\SymfonyFluidBundle\FluidBundle()``` to the Bundles in the ```app\AppKernel.php```
+Add ```FluidAdapter\SymfonyFluidBundle\FluidBundle::class => ['all' => true]``` to the Bundles-Array in the ```config\bundles.php```
 
 3. add fluid template engine
 
-Add ```fluid``` to the ```framework.templating.engines``` array in ```app/config/config.yml```
+Add ```fluid``` to the ```framework.templating.engines``` array in ```config/packages/framework.yaml```
 
 ## Rendering Fluid Templates
 
@@ -28,9 +28,9 @@ You can simply use the built-in render method in the controller to render a flui
 
 ## Template Paths
 
-Templates are loaded from ```app/Resources/views/Templates/```, ```app/Resources/views/Layouts/``` and ```app/Resources/views/Partials/```
+Templates are loaded from ```src/Resources/views/Templates/```, ```src/Resources/views/Layouts/``` and ```src/Resources/views/Partials/```
 
 | render argument      | template path                                       |
 |----------------------|-----------------------------------------------------|
 | AppBundle:Blog:Index | AppBundle/Resources/views/Templates/Blog/Index.html |
-| Default/Index.html   | app/Resources/views/Templates/Default/Index.html    |
+| Default/Index.html   | src/Resources/views/Templates/Default/Index.html    |

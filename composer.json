@@ -16,13 +16,14 @@
     }
   ],
   "require": {
-    "php": ">=5.6",
-    "symfony/http-foundation": "*",
-    "symfony/http-kernel": "*",
-    "symfony/routing": "*",
-    "symfony/dependency-injection": "*",
-    "symfony/form": "*",
-    "symfony/asset": "*",
+    "php": "^7.1",
+    "symfony/http-foundation": "^4.0",
+    "symfony/http-kernel": "^4.0",
+    "symfony/routing": "^4.0",
+    "symfony/dependency-injection": "^4.0",
+    "symfony/form": "^4.0",
+    "symfony/asset": "^4.0",
+    "symfony/templating": "^4.1",
     "typo3fluid/fluid": "^2.0"
   },
   "require-dev": {
